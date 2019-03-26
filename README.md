@@ -17,6 +17,7 @@
     - [HTML - IE 호환](#html-ie-compatible)
     - [HTML - 인코딩 설정](#html-charset)
     - [CSS, JavaScript import](#html-type-attr)
+    - [태그 속성 순서](#html-tag-attr-order)
     - [Boolean attr](#html-boolean-attr)
     - [마크업 간소화](#html-simplification)
     - [문서 영역(HTML5 아웃라인)](#html-outline)
@@ -29,7 +30,8 @@
     - [주석](#css-comment)
     - [선택자](#css-selector)
     - [선택자 우선순위](#css-priority)
-4. [네이밍 규칙](#css-naming)
+4. [네이밍 규칙](#naming-rule)
+5. [접근성 가이드라인](#accessibility)
 
 
 
@@ -115,6 +117,29 @@ CSS와 JavaScript를 불러올 때 `type` 속성을 생략합니다.
 
 <!-- 자바스크립트 -->
 <script src="code-guide.js"></script>
+```
+
+### 태그 속성 순서 <a id="html-tag-attr-order" href="#html-tag-attr-order">#</a>
+HTML 태그 속성들은 코드의 가독성 향상을 위해 특정 순서로 놓는 것이 좋습니다.
+1. **`class`**
+2. **`id`**, `name`
+3. `data-*`
+4. **`src`**, `for`, **`type`**, **`href`**, **`value`**
+5. **`title`**, **`alt`**
+6. `aria-*`, `role`  
+
+`class`는 콤포넌트의 재사용성을 높여주기 때문에 가장 먼저 오게 합니다.  
+`id`는 좀 더 구체적이고 제한적으로 쓰이므로 두 번째로 오게 합니다.
+
+```html
+<!-- 귿 example -->
+<a class="..." id="..." data-modal="toggle" href="#">
+  Example link
+</a>
+
+<input class="form-control" type="text">
+
+<img src="..." alt="...">
 ```
 
 ### Boolean attr <a id="html-boolean-attr" href="#html-boolean-attr">#</a>
@@ -312,7 +337,7 @@ table {
     font-family: 'open sans', arial, sans-serif;
 }
 ```
-- 축약 가능한 값을 축약합니다.
+- 축약 가능한 값은 축약합니다.
 ```css
 /* 밷 CSS */
 .selector {
@@ -421,8 +446,8 @@ border도 위쪽 왼/오 에만 주고 싶은데 굳이 .... 축약은 놉
 ### 선택자 <a id="css-selector" href="#css-selector">#</a>
 - 아이디(`#selector`) 나 태그(`div`, `img` ... 등)는 사용하지 않습니다. ❌
 - 속성 선택자도 사용하지 않습니다. ❌
-- 선택자 우선순위(priority)를 높이는 조합은 자제해주세요.(우선순위는 다음 단락에서 다시 설명하는걸로)
-- 선택자는 최대 세 개 정도로만 선택할 수 있게끔 해주세요.
+- [선택자 우선순위(priority)](#css-priority)를 높이는 조합은 자제해주세요.
+- 선택자는 최대 세 개 정도로만 선택할 수 있게끔 해주세요. 3️⃣
 - 필요하다면 가장 가까운 부모로부터만 속성을 물려 받을 수 있게끔 해주세요.
 
 ```css
@@ -446,10 +471,10 @@ span { ... }
 |**3**          |제작자 (일반)|제작자가 넣은 스타일 시트|
 |**4**          |제작자 (중요)|제작자가 넣은 시트 중 중요 표시한 속성|
 |**5(높음)**          |사용자 (중요)|사용자가 넣은 스타일 시트 중 중요 표시한 속성|
-보통 그 다음은 .class 같은 클래스 선택자
+
 - 여기서 우리는 만드는 입장이니 `제작자` 입장을 고려합시다.
 - (일반) `vs` (중요) 차이는 `!important` 를 뜻합니다.
-- <b>`!important`는 저 우선순위 레벨을 무너뜨리기 때문에 사용을 금합니다. ❌</b>  
+- <b>`!important`는 우선순위 레벨을 무너뜨리기 때문에 사용을 금합니다. ❌</b>  
 
 
 다음은 이제 우리가 만드는 `제작자의 CSS file` 내에서의 우선순위를 설명합니다.
@@ -584,4 +609,40 @@ CSS
 
 * 짧고 간결하게 작성하되 너무 축약하지 않습니다.  
 `.btn`과 같이 쉽게 의미를 유추 할 수 있는 축약은 괜찮지만 `.s`은 의미를 파악하기 어렵습니다.
-* 의미, 구조, 목적을 담아 성심성의껏 작명합니다.
+* 의미, 구조, 목적을 담아 성심성의껏 작명합니다.  
+
+<b>[⬆️ 처음으로](#contents-table)</b>  
+## 접근성 가이드 <a id="accessibility" href="#accessibility">#</a>
+
+1. 링크 텍스트가 단독으로 사용될 때도 정확한 의미 파악이 가능하도록 해야합니다
+    - `Bad Case`
+        - 목적이나 용도를 알기 어려운 링크 텍스트를 제공한 경우
+            > 탭이 존재하고 각각의 더보기를 그냥 '더보기'로만 제공할 때  
+
+            **💡각 탭메뉴명 + 더보기 로 `alt` 제공합니다.**
+            ```html
+            <!-- 귿 case-->
+            <img src="/img/read-more.png" alt="공지사항 더보기">
+            ```  
+            <br>  
+
+        - 한 페이지에 다른 목적지를 가진 동일한 링크 텍스트가 두개 이상 들어간 경우  
+            > 페이지에 다른 목적지를 가진 동일한 링크 텍스트인 '더보기' 가 두개 이상 존재할때  
+
+            **💡한 페이지에 다른 목적지를 가진 링크가 동일한 텍스트 링크 텍스트를 갖지 않도록 해야 합니다.**
+            ```html
+            <!-- 귿 case-->
+            <a href="/notice">공지사항 더보기</a>
+            <a href="/event">이벤트 더보기</a>
+            ```  
+            <br> 
+    - `Good Case`
+        - UI상 정확한 링크 텍스트 제공이 어려워(공간이 협소한 경우 등) 숨김 텍스트 혹은 title로 제공한 경우
+             > 공간이 협소하여 숨김 텍스트 혹은 title로 정확한 텍스트를 제공하고 있어 오류가 아닙니댜.  
+
+            **💡숨김 텍스트 혹은 title로 제공하도록 합니다.**
+            ```html
+            <!-- 귿 case-->
+            <a class="link-btn" href="/notice"><span class="link-btn__alt--blind">공지사항</span>더보기</a>
+            <a class="link-btn" href="/event" title="이벤트 더보기">더보기</a>
+            ``` 
