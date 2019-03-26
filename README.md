@@ -1,11 +1,5 @@
 # 마크업 가이드
 
-### Based on
-> [Code Guide by @mdo](http://mdo.github.io/code-guide)  
-> [Google HTML/CSS Style Guide](https://google.github.io/styleguide/htmlcssguide.html)  
-> [Airbnb CSS / Sass Styleguide](https://github.com/airbnb/css)
-
-
 
 ## 목차 <a id="contents-table" href="#contents-table">#</a>
 
@@ -645,4 +639,30 @@ CSS
             <!-- 귿 case-->
             <a class="link-btn" href="/notice"><span class="link-btn__alt--blind">공지사항</span>더보기</a>
             <a class="link-btn" href="/event" title="이벤트 더보기">더보기</a>
-            ``` 
+            ```  
+            <br>  
+
+2. 주요 콘텐츠 블록의 제목을 `<h1>`~`<h6>`로 마크업 되어야합니다.
+    - `Bad Case`
+        - 주요 콘텐츠 블록의 제목이 `<h1>`~`<h6>`로 마크업되지 않은 경우
+            > heading 요소가 아닌 다른 요소로 마크업 되어있을 때  
+
+            **💡웹 페이지의 내용을 대표하는 제목 및 주요 콘텐츠 블록의 제목을 `<h1>`~`<h6>`으로 제공해야 합니다.**
+            ```html
+            <!-- 밷 case-->
+            <a class="gnb" href="#"><span>풀잎스쿨</span></a>
+            ```  
+
+    - `Good Case`
+        - 주요 콘텐츠 블록의 제목이 헤딩요소로 제공하고 있는 경우
+            > heading 요소로 제대로 마크업 되어있을 때
+
+            ```html
+            <!-- 귿 case-->
+            <h2><a class="gnb" href="#"><span>풀잎스쿨</span></a></h2>
+            ```
+        - 화면에는 표시되지 않지만 콘텐츠의 바른 이해를 위해 숨김 제목을 제공하고 있는 경우 
+            > `class`를 통해 뷰에서는 숨김 
+            ```html
+            <h3 class="blind">F&Q</h3>
+            ```
