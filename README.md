@@ -449,9 +449,7 @@ span { ... }
 보통 그 다음은 .class 같은 클래스 선택자
 - 여기서 우리는 만드는 입장이니 `제작자` 입장을 고려합시다.
 - (일반) `vs` (중요) 차이는 `!important` 를 뜻합니다.
-- <b>`!important`는 저 우선순위 레벨을 무너뜨리기 때문에 사용을 금합니다. ❌</b>
-
-<br>
+- <b>`!important`는 저 우선순위 레벨을 무너뜨리기 때문에 사용을 금합니다. ❌</b>  
 
 
 다음은 이제 우리가 만드는 `제작자의 CSS file` 내에서의 우선순위를 설명합니다.
@@ -482,6 +480,7 @@ span { ... }
 - 네이밍 룰은 [BEM(Block Element Modifier)](http://getbem.com/naming/)스타일을 따릅니다.
 - BEM 은 **Block**, **Element**, **Modifier** 을 이용하는 방법론입니다.
 <br>  
+
 **Block**: 단독으로도 의미를 가지고있는 요소입니다. ex) `header`, `container`, `menu` ...  
 **Element**: 의미적으로 **Block**과 연결되있는 요소입니다. ex) `header title`, `header logo`...  
 **Modifier**: **Block**이나 **Element**의 플래그적 의미를 가지고 있습니다. 상태, 행동, 모양 등을 의미합니다. ex) `highlighted`, `activated` ...  
