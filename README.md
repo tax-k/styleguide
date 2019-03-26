@@ -2,24 +2,27 @@
 
 ### Based on
 > [Code Guide by @mdo](http://mdo.github.io/code-guide)  
-> [Google HTML/CSS Style Guide](https://google.github.io/styleguide/htmlcssguide.html)
-- - -
+> [Google HTML/CSS Style Guide](https://google.github.io/styleguide/htmlcssguide.html)  
+> [Airbnb CSS / Sass Styleguide](https://github.com/airbnb/css)
+
 
 
 ## 목차 <a id="contents-table" href="#contents-table">#</a>
 
 1. [기본규칙](#basic)
 2. [HTML](#html)
-    1. [HTML - Syntax](#html-syntax)
-    2. [HTML - Doctype](#html-doctype)
-    3. [HTML - 언어(lang) 속성](#html-lang)
-    4. [HTML - IE 호환](#html-ie-compatible)
-    5. [HTML - 인코딩 설정](#html-charset)
-    6. [CSS, JavaScript import](#html-type-attr)
-    7. [Boolean attr](#html-boolean-attr)
-    8. [마크업 간소화](#html-simplification)
-    9. [문서 영역(HTML5 아웃라인)](#html-outline)
-    10. [실용성 vs 퍼펙트함](#html-pragmatism)
+    - [HTML - Syntax](#html-syntax)
+    - [HTML - Doctype](#html-doctype)
+    - [HTML - 언어(lang) 속성](#html-lang)
+    - [HTML - IE 호환](#html-ie-compatible)
+    - [HTML - 인코딩 설정](#html-charset)
+    - [CSS, JavaScript import](#html-type-attr)
+    - [Boolean attr](#html-boolean-attr)
+    - [마크업 간소화](#html-simplification)
+    - [문서 영역(HTML5 아웃라인)](#html-outline)
+    - [실용성 vs 퍼펙트함](#html-pragmatism)
+3. [CSS](#css)
+    - [CSS]
 
 
 ## 기본규칙 <a id="basic" href="#basic">#</a>
@@ -33,8 +36,8 @@
 * tab(하드 탭) `VS` space(소프트 탭)  
 *comming soon*
 - - -
-* 속성(attr)값에는 항상 큰 따옴표(" ")를 사용합니다.
-* HTML이 눈감아줘도 단일 태그에는 슬래시(`/`)를 사용하지 않습니다 (ex: `<img />` or `<br />`)
+* 속성(attr)값에는 항상 <b>큰 따옴표(" ")</b>를 사용합니다.
+* HTML이 눈감아줘도 단일 태그에는 <b>슬래시(`/`)</b>를 사용하지 않습니다 (ex: `<img />` or `<br />`)
 * HTML이 눈감아줘도 닫는게 선택적이라도 생략하지 마세요 (ex: `<li />` or `<body />`)
 
 **bad** 
@@ -97,7 +100,9 @@ CSS와 JavaScript를 불러올 때 `type` 속성을 생략합니다.
 
 <!-- 내부 CSS (최대한 쓰지 않습니다 )-->
 <style>
-...
+.modu-text-accent {
+    color: #ec185e;
+}
 </style>
 
 <!-- 자바스크립트 -->
@@ -106,8 +111,7 @@ CSS와 JavaScript를 불러올 때 `type` 속성을 생략합니다.
 
 ### Boolean attr <a id="html-boolean-attr" href="#html-boolean-attr">#</a>
 `checked`, `disabled`, `selected`   
-이게 Boolean attr 입니다. 생소할 수도 있습니다. 
-**과거**
+이게 Boolean attr 입니다. 생소할 수도 있습니다.  
 ```html
 <!-- 예전엔 요렇게 써줬습니다. 복잡... -->
 <label><input type=checkbox checked=checked name=coffee disabled=disabled> Coffee</label>
@@ -140,22 +144,22 @@ HTML 마크업 작성시 가능하면 불필요한 부모 엘리먼트들을 피
 ```html
 <!-- 밷 HTML -->
 <body>
-    <h1>동물</h1>
+    <h1>모두연</h1>
     <div>
-        <h1>포유류</h1>
+        <h1>랩</h1>
         <div>
-            <h1>고래</h1>
+            <h1>PRML</h1>
         </div>
     </div>
 </body>
 
 <!-- 귿 HTML -->
 <body>
-    <h1>동물<h1>
+    <h1>모두연<h1>
     <article>
-        <h2>포유류<h2>
+        <h2>랩<h2>
         <section>
-            <h3>고래<h3>
+            <h3>PRML<h3>
         </section>
     </article>
 </body>
@@ -164,4 +168,10 @@ HTML 마크업 작성시 가능하면 불필요한 부모 엘리먼트들을 피
 ### 실용성 vs 퍼펙트함 <a id="html-pragmatism" href="#html-pragmatism">#</a>
 실용성을 잃지 않는 선에서 가능한 한 HTML 표준과 시맨틱함을 챙겨야합니다.
 너무 '난 다 지킬꺼야'같은 퍼펙트함은 실용성이 떨어질 수 있습니다.
-> HTML 은 관대하니까요
+> HTML 은 <b>관대</b>하니까요
+
+
+<br>
+<br>
+
+## CSS <a id="css" href="#css">#</a>
