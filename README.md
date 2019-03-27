@@ -26,6 +26,7 @@
     - [선택자 우선순위](#css-priority)
 4. [네이밍 규칙](#naming-rule)
 5. [접근성 가이드라인](#accessibility)
+6. [다국어 스타일링](#multilang-site)
 
 
 
@@ -666,3 +667,108 @@ CSS
             ```html
             <h3 class="blind">F&Q</h3>
             ```
+
+<b>[⬆️ 처음으로](#contents-table)</b>  
+## 다국어 스타일링 <a id="multilang-site" href="#multilang-site">#</a>
+
+```css
+/* APPLE SD Gothic Neo는 현재 Mac 한글 기본 서체입니다.
+* 테스트 환경도 Mac에서 진행했습니다. 
+ */
+body { font-family:'APPLE SD Gothic Neo', sans-serif; }
+```
+> 이렇게 사이트 전체가 한 폰트 스타일로 되어있으면 아무 문제 없습니다. 🤩  
+
+> 폰트 이름에 공백 있으면 홑따옴표 (`''`)로 반드시 감싸야 합니다. 우린 공백이 있던 없던 감싸면 됩니다.  
+
+
+그런데 그럴 일이 잘 없을겁니다 분명  
+
+영문만 제공하는 폰트와 한글만 제공하는 폰트, 그리고 물론 둘다 제공하는 폰트 등  다양한 폰트가 존재합니다.  
+
+이걸 분명 잘 버무려서 써야하는데 어떻게 해야할까? 싶습니다.🤔  
+
+유명한 폰트들로 한번 테스트를 해봅시다.
+
+저는 세계적으로 가장 유명한 `helvetica` 를 영어로, 애플덕후의 사랑 `APPLE SD Gothic Neo` 를 한글폰트로 감을 익혀보겠습니다.  
+
+```html
+<!-- helvetica: 영문 폰트 -->
+<div style="font-family:'helvetica neue', sans-serif">Modulabs</div>
+<!-- APPLE SD Gothic Neo: 한/영 폰트 -->
+<div style="font-family:'APPLE SD Gothic Neo', sans-serif">Modulabs</div>
+```
+`출력결과`  
+
+![alt text](figure/figure_1.png "Helvetica 와 APPLE SD Gothic Neo 비교")
+
+같은 고딕이라도 확실히 다릅니다.
+
+그럼 이제 영문 따로 한글 따로 적용하고 싶은데 위 두 폰트를 쓰려면?
+
+이 경우에는 간단한 방법이 있습니다.  
+
+바로 <b>`폰트 선언 순서`</b>를 이용하는 겁니다.  
+```css
+/* CSS는 폰트를 이렇게 선언된 순서대로 적용하고 
+만약 없다면 다음 폰트로 적용합니다 */
+body { font-family:'APPLE SD Gothic Neo', sans-serif; }
+```
+위 코드를 보면 `APPLE SD Gothic Neo` 를 불러올거고 없으면 `sans-serif` 로 적용될겁니다.  
+
+이걸 이용하면 간단합니다.
+```html
+<!-- 우리가 원했던 대로 한글 따로 영어 따로 적용된 케이스 -->
+<div style="font-family:'helvetica neue', 'APPLE SD Gothic Neo', sans-serif">Modulabs 모두의연구소</div>
+<!-- APPLE SD Gothic Neo가 한/영 폰트라 다 적용된 모습  -->
+<div style="font-family:'APPLE SD Gothic Neo', sans-serif">Modulabs 모두의연구소 </div>
+<!-- 그런데 이건? 왜 우리가 원한 케이스와 같은건가 ...?-->
+<div style="font-family:'helvetica neue', sans-serif">Modulabs 모두의연구소 </div>
+```
+`출력결과`  
+
+![alt text](figure/figure_2.png "언어별 폰트 적용 비교 이미지")
+
+> 바로 브라우저가 알아서 한국어는 Mac 기본 폰트인  `APPLE SD Gothic Neo`로 뿌려주었기 때문입니다.
+
+그리고 또 한가지 `Counter Example`이 있습니다.  
+**한/영 둘다 지원하는 폰트 여러개를 언어에 맞게 따로따로 쓰려면?** 같은 경우입니다.  
+
+가장 좋은 방법은 <b>`명시적으로 선언`</b>해 주는 겁니다.  
+> <b>`lang` 속성을 이용하면 됩니다. </b>
+
+```html
+<!-- 요렇게 -->
+<div lang="ko">도시락</div>
+<div lang="en">
+    lunch box</div>
+<div lang="zh">午餐盒</div>
+<div lang="ja">お弁当</div>
+```
+`lang` 속성은 모든 태그를 다 지원하니 자유자재로 써도 됩니다 :) 
+```css
+:lang(ko) {
+    font-family: 'APPLE SD Gothic Neo', sans-serif
+}
+
+:lang(en) {
+    font-family: 'Montserrat', sans-serif;
+}
+
+:lang(zh) {
+    font-family: 'ZCOOL KuaiLe', cursive;
+}
+
+:lang(ja) {
+    font-family: 'Kosugi Maru', sans-serif;
+}
+```
+`출력결과`   
+
+![alt text](figure/figure_3.png "lang속성을 이용한 비교 이미지")  
+
+이렇게 적용하면 제대로 적용이 됩니다.
+
+> `폰트 선언 순서` 와 `lang` 속성을 적절히 잘 이용하여 전 세계에서 잘 볼수 있도록 합시다.
+
+> HTML 문서 상단에 기본 `lang` 은 보통 `en` 아니면 `ko`로 선언하니 그거의 `default` 폰트 세팅을 해두고 나머지 경우를 `lang` 으로 추가적으로 관리 하는게 편합니다 🤟🏻
