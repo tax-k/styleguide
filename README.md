@@ -24,9 +24,11 @@
     - [주석](#css-comment)
     - [선택자](#css-selector)
     - [선택자 우선순위](#css-priority)
-4. [네이밍 규칙](#naming-rule)
-5. [접근성 가이드라인](#accessibility)
-6. [다국어 스타일링](#multilang-site)
+
+4. [레이아웃](#layout)
+5. [네이밍 규칙](#naming-rule)
+6. [접근성 가이드라인](#accessibility)
+7. [다국어 스타일링](#multilang-site)
 
 
 
@@ -492,6 +494,199 @@ span { ... }
 
 이 순서로 우선순위가 결정됩니다 😀
 
+
+<b>[⬆️ 처음으로](#contents-table)</b>
+## 레이아웃 <a id="layout" href="#layout">#</a>
+
+### `display: flex`
+
+
+`display: flex` 속성 설명  
+1. `flex-direction` (부모에게 주는거에요)
+    - `row` (default) **수평** 정렬 **왼  ➡️오** 
+    - `column` **수직** 정렬 **위 ⬇️아래**  
+```css
+.box.exam__1 {
+    flex-direction: row;
+}
+
+.box.exam__2 {
+    flex-direction: row-reverse;
+}
+
+.box.exam__3 {
+    flex-direction: column;
+}
+
+.box.exam__4 {
+    flex-direction: column-reverse;
+}
+```
+```html
+<div class="box exam__1">
+    <div class="inner">완</div>
+    <div class="inner">투</div>
+    <div class="inner">쓰으리
+        <br>여백
+        <br>있음
+    </div>
+</div>
+
+<div class="box exam__2">
+    <div class="inner">완</div>
+    <div class="inner">투</div>
+    <div class="inner">쓰으리
+        <br>여백
+        <br>있음
+    </div>
+</div>
+
+<div class="box exam__3">
+    <div class="inner">완</div>
+    <div class="inner">투</div>
+    <div class="inner">쓰으리
+        <br>여백
+        <br>있음
+    </div>
+</div>
+
+<div class="box exam__4">
+    <div class="inner">완</div>
+    <div class="inner">투</div>
+    <div class="inner">쓰으리
+        <br>여백
+        <br>있음
+    </div>
+</div>
+```
+`output`
+<html>
+    <head>
+        <link href="./css/style.css" rel="stylesheet">
+    </head>
+    <body>
+        <code>row</code>
+        <div class="box exam__1">
+            <div class="inner">완</div>
+            <div class="inner">투</div>
+            <div class="inner">쓰으리
+                <br>여백
+                <br>있음
+            </div>
+        </div>
+        <br>
+        <code>row-reverse</code>
+        <div class="box exam__2">
+            <div class="inner">완</div>
+            <div class="inner">투</div>
+            <div class="inner">쓰으리
+                <br>여백
+                <br>있음
+            </div>
+        </div>
+        <br>
+        <code>column</code>
+        <div class="box exam__3">
+            <div class="inner">완</div>
+            <div class="inner">투</div>
+            <div class="inner">쓰으리
+                <br>여백
+                <br>있음
+            </div>
+        </div>
+        <br>
+        <code>column-reverse</code>
+        <div class="box exam__4">
+            <div class="inner">완</div>
+            <div class="inner">투</div>
+            <div class="inner">쓰으리
+                <br>여백
+                <br>있음
+            </div>
+        </div>
+    </body>
+</html>  
+
+2. `flex` 속성  (자식에게 주는거에요)  
+    `flex-grow` , `flex-shrink` , `flex-basis` 의 **단축속성** 입니다.  
+
+     위 세가지는 `flex` 항목에게 사용가능한 공간을 분배하는 방식을 변경하는 것입니다.  
+     사용가능한 공간 개념은 flex 항목을 정렬할 때 특히 중요합니다.
+    - `flex-grow` 
+        - **0**(default) : 원래 크기 유지합니다
+        - **양수** : 부모의 크기에 맞게, 자기의 원래 사이즈(`flex-basis`) 보다 살찝니다
+        > **`flex-grow: 양수`** 로 지정하면 그 비율 맞게 지들끼리 알아서 분배합니다.  
+
+        > `example` 1 : 2 : 1 로 나눠서 알아서 슥
+
+        ```css
+        .flex-grow__inner:first-child {
+            flex: 1 1 auto;
+        }
+
+        .flex-grow__inner:nth-child(2) {
+            flex: 2 1 auto;
+        }
+
+        .flex-grow__inner:last-child {
+            flex: 1 1 auto;
+        }
+        ```
+        ```html
+        <div class="box exam__9">
+            <div class="inner flex__inner">완</div>
+            <div class="inner flex__inner">투</div>
+            <div class="inner flex__inner">쓰으리
+                <br>여백
+                <br>있음
+            </div>
+        </div>
+        ```
+        `output`
+        <html>
+        <head>
+            <link href="./css/style.css" rel="stylesheet">
+        </head>
+        <body>
+            <div class="box exam__9">
+                <div class="inner flex-grow__inner">완</div>
+                <div class="inner flex-grow__inner">투</div>
+                <div class="inner flex-grow__inner">쓰으리
+                    <br>여백
+                    <br>있음
+                </div>
+            </div>
+        </body>
+        </html>
+    - `flex-shrink`
+        - **0** : 원래 크기 유지합니다.
+        - **양수**(default) : 부모의 크기에 맞게 살빠집니다.
+        - `flex-grow` 랑 비슷합니다. 저스트 그 반대 일 뿐 !
+
+    > ::: `!important` ::: `flex`의 값은 **비율**입니다. `flex: 1 1 auto`, `flex: 2 1 auto` == `flex: 10 1 auto`, `flex: 20 1 auto`
+    - `flex-basis`
+        - 항목의 크기를 결정합니다.
+        - default: `auto`
+        - `flex` 항목에 사이즈가 지정되어 있지 않으면, `flex` 항목의 내용물 사이즈가 `flex-basis` 값으로 사용됩니다.  
+        저희 예시에선 `200px`이 되겠네요.
+        만약 `width` 가 명시되어있지 않으면 ?  
+        `flex` 항목들이 각 내용물 사이즈만큼 알아서 공간을 차지합니다.
+
+    - `flex : <usecase>`
+        - 이미 어느정도 지정되어있는 것
+        - 종류
+            - `flex: initial`
+                == `flex: 0 1 auto`
+            - `flex: auto`
+                == `flex: 1 1 auto`
+            - `flex: none`
+                == `flex: 0 0 auto`
+            - `flex: <positive-number>`
+                == `flex: 1` or `flex: 2` 이런  포메이션
+                == `flex-grow` 만 지정하고 나머지는 `1 0` 으로 지정하는 한다는 것
+
+    > `flex-grow: 1` , `flex-shrink: 1` , `flex-basis: 0` 은 **`flex: 1 1 0`** 로 줄일 수 있습니다.  
+
 <b>[⬆️ 처음으로](#contents-table)</b>
 ## 네이밍 룰 <a id="naming-rule" href="#naming-rule">#</a>
  
@@ -771,16 +966,4 @@ body { font-family:'APPLE SD Gothic Neo', sans-serif; }
 
 > `폰트 선언 순서` 와 `lang` 속성을 적절히 잘 이용하여 전 세계에서 잘 볼수 있도록 합시다.
 
-> HTML 문서 상단에 기본 `lang` 은 보통 `en` 아니면 `ko`로 선언하니 그거의 `default` 폰트 세팅을 해두고 나머지 경우를 `lang` 으로 추가적으로 관리 하는게 편합니다 🤟  
-
-```html
-<!DOCTYPE html>
-<html>
-  <head>
-    <title>This is a title</title>
-    <link href="/css/style.css" rel="stylesheet">
-  <body>
-    <p>Hello world!</p>
-  </body>
-</html>
-```
+> HTML 문서 상단에 기본 `lang` 은 보통 `en` 아니면 `ko`로 선언하니 그거의 `default` 폰트 세팅을 해두고 나머지 경우를 `lang` 으로 추가적으로 관리 하는게 편합니다 🤟
