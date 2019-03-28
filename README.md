@@ -771,4 +771,16 @@ body { font-family:'APPLE SD Gothic Neo', sans-serif; }
 
 > `폰트 선언 순서` 와 `lang` 속성을 적절히 잘 이용하여 전 세계에서 잘 볼수 있도록 합시다.
 
-> HTML 문서 상단에 기본 `lang` 은 보통 `en` 아니면 `ko`로 선언하니 그거의 `default` 폰트 세팅을 해두고 나머지 경우를 `lang` 으로 추가적으로 관리 하는게 편합니다 🤟🏻
+> HTML 문서 상단에 기본 `lang` 은 보통 `en` 아니면 `ko`로 선언하니 그거의 `default` 폰트 세팅을 해두고 나머지 경우를 `lang` 으로 추가적으로 관리 하는게 편합니다 🤟  
+
+```html
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>This is a title</title>
+    <link href="/css/style.css" rel="stylesheet">
+  <body>
+    <p>Hello world!</p>
+  </body>
+</html>
+```
