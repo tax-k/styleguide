@@ -559,53 +559,19 @@ span { ... }
     </div>
 </div>
 ```
-`output`
-<html>
-    <head>
-        <link href="./css/style.css" rel="stylesheet">
-    </head>
-    <body>
-        <code>row</code>
-        <div class="box exam__1" style="display: flex;flex-direction: row; padding: 10px; border: 1px dotted #000;">
-            <div class="inner">완</div>
-            <div class="inner">투</div>
-            <div class="inner">쓰으리
-                <br>여백
-                <br>있음
-            </div>
-        </div>
-        <br>
-        <code>row-reverse</code>
-        <div class="box exam__2" style="display: flex;flex-direction: row-reverse; padding: 10px; border: 1px dotted #000;">
-            <div class="inner">완</div>
-            <div class="inner">투</div>
-            <div class="inner">쓰으리
-                <br>여백
-                <br>있음
-            </div>
-        </div>
-        <br>
-        <code>column</code>
-        <div class="box exam__3" style="display: flex;flex-direction: column; padding: 10px; border: 1px dotted #000;">
-            <div class="inner">완</div>
-            <div class="inner">투</div>
-            <div class="inner">쓰으리
-                <br>여백
-                <br>있음
-            </div>
-        </div>
-        <br>
-        <code>column-reverse</code>
-        <div class="box exam__4" style="display: flex;flex-direction: column-reverse; padding: 10px; border: 1px dotted #000;">
-            <div class="inner">완</div>
-            <div class="inner">투</div>
-            <div class="inner">쓰으리
-                <br>여백
-                <br>있음
-            </div>
-        </div>
-    </body>
-</html>  
+`output`  
+`flex-direction: row`
+![alt text](figure/figure_4.png "row 예시")  
+
+`flex-direction: row-reverse`
+![alt text](figure/figure_5.png "row-reverse 예시")  
+
+`flex-direction: column`
+![alt text](figure/figure_6.png "column 예시")  
+
+`flex-direction: column-reverse`
+![alt text](figure/figure_7.png "column-reverse 예시")
+
 
 2. `flex` 속성  (자식에게 주는거에요)  
     `flex-grow` , `flex-shrink` , `flex-basis` 의 **단축속성** 입니다.  
@@ -614,7 +580,7 @@ span { ... }
      사용가능한 공간 개념은 flex 항목을 정렬할 때 특히 중요합니다.
     - `flex-grow` 
         - **0**(default) : 원래 크기 유지합니다
-        - **양수** : 부모의 크기에 맞게, 자기의 원래 사이즈(`flex-basis`) 보다 살찝니다
+        - **양수** : 부모의 크기에 맞게, 자기의 원래 사이즈(`flex-basis`) 보다 살찝니다  
         > **`flex-grow: 양수`** 로 지정하면 그 비율 맞게 지들끼리 알아서 분배합니다.  
 
         > `example` 1 : 2 : 1 로 나눠서 알아서 슥
@@ -642,26 +608,15 @@ span { ... }
             </div>
         </div>
         ```
-        `output`
-        <html>
-        <head>
-            <link href="./css/style.css" rel="stylesheet">
-        </head>
-        <body>
-            <div class="box exam__9">
-                <div class="inner flex-grow__inner">완</div>
-                <div class="inner flex-grow__inner">투</div>
-                <div class="inner flex-grow__inner">쓰으리
-                    <br>여백
-                    <br>있음
-                </div>
-            </div>
-        </body>
-        </html>
+        `output`  
+        ![alt text](figure/figure_8.png "flex-grow 예시")
+        
     - `flex-shrink`
         - **0** : 원래 크기 유지합니다.
         - **양수**(default) : 부모의 크기에 맞게 살빠집니다.
-        - `flex-grow` 랑 비슷합니다. 저스트 그 반대 일 뿐 !
+        - `flex-grow` 랑 비슷합니다. 저스트 그 반대 일 뿐 !  
+        `output`  
+        ![alt text](figure/figure_9.png "flex-grow 예시")
 
     > ::: `!important` ::: `flex`의 값은 **비율**입니다. `flex: 1 1 auto`, `flex: 2 1 auto` == `flex: 10 1 auto`, `flex: 20 1 auto`
     - `flex-basis`

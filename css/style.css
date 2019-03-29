@@ -5,6 +5,7 @@
 .box {
     display: flex;
     padding: 10px;
+    background-color: #e1f5fe;
     border: 1px dotted #000;
 }
 .box.exam__1 {
