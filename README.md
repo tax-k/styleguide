@@ -566,7 +566,7 @@ span { ... }
     </head>
     <body>
         <code>row</code>
-        <div class="box exam__1">
+        <div class="box exam__1" style="display: flex;flex-direction: row; padding: 10px; border: 1px dotted #000;">
             <div class="inner">완</div>
             <div class="inner">투</div>
             <div class="inner">쓰으리
@@ -576,7 +576,7 @@ span { ... }
         </div>
         <br>
         <code>row-reverse</code>
-        <div class="box exam__2">
+        <div class="box exam__2" style="display: flex;flex-direction: row-reverse; padding: 10px; border: 1px dotted #000;">
             <div class="inner">완</div>
             <div class="inner">투</div>
             <div class="inner">쓰으리
@@ -586,7 +586,7 @@ span { ... }
         </div>
         <br>
         <code>column</code>
-        <div class="box exam__3">
+        <div class="box exam__3" style="display: flex;flex-direction: column; padding: 10px; border: 1px dotted #000;">
             <div class="inner">완</div>
             <div class="inner">투</div>
             <div class="inner">쓰으리
@@ -596,7 +596,7 @@ span { ... }
         </div>
         <br>
         <code>column-reverse</code>
-        <div class="box exam__4">
+        <div class="box exam__4" style="display: flex;flex-direction: column-reverse; padding: 10px; border: 1px dotted #000;">
             <div class="inner">완</div>
             <div class="inner">투</div>
             <div class="inner">쓰으리
